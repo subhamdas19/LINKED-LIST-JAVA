@@ -1,0 +1,109 @@
+Java program for Union and Intersection of two Linked Lists
+class Solution1
+{
+    Node head;
+    class Node
+    {
+        int data;
+        Node next;
+        Node(int d)
+        {
+            data = d;
+            next = null;
+        }
+    }
+    void get_union(Node hd1, Node hd2)
+    {
+        Node t1 = hd1, t2 = hd2;
+        while (t1 != null)
+        {
+            insert(t1.data);
+            t1 = t1.next;
+        }
+        while (t2 != null)
+        {
+            if (!is_Present(head, t2.data))
+                insert(t2.data);
+            t2 = t2.next;
+        }
+    }
+    void get_intrSection(Node hd1, Node hd2)
+    {
+        Node rst = null;
+        Node t1 = hd1;
+        while (t1 != null)
+        {
+            if (is_Present(hd2, t1.data))
+                insert(t1.data);
+            t1 = t1.next;
+        }
+    }
+    void printList()
+    {
+        Node temp = head;
+        while (temp != null)
+        {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+    void insert(int new_data)
+    {
+        Node new_node = new Node(new_data);
+        new_node.next = head;
+        head = new_node;
+    }
+    boolean is_Present(Node head, int data)
+    {
+        Node t = head;
+        while (t != null)
+        {
+            if (t.data == data)
+                return true;
+            t = t.next;
+        }
+        return false;
+    }
+    public static void main(String args[])
+    {
+        Solution1 llist1 = new Solution1();
+        Solution1 llist2 = new Solution1();
+        Solution1 unin = new Solution1();
+        Solution1 intersecn = new Solution1();
+        llist1.insert(20);
+        llist1.insert(4);
+        llist1.insert(15);
+        llist1.insert(10);
+        llist2.insert(10);
+        llist2.insert(2);
+        llist2.insert(4);
+        llist2.insert(8);
+        intersecn.get_intrSection(llist1.head, llist2.head);
+        unin.get_union(llist1.head, llist2.head);
+        System.out.println("First List is");
+        llist1.printList();
+        System.out.println("Second List is");
+        llist2.printList();
+        System.out.println("Intersection List is");
+        intersecn.printList();
+        System.out.println("Union List is");
+        unin.printList();
+    }
+}
+First List is
+10 15 4 20
+Second List is
+8 4 2 10
+Intersection List is
+4 10
+Union List is
+2 8 20 4 15 10
+Complexity Analysis for Union and Intersection of two Linked Lists
+Time Complexity
+
+ O(m+n) where “m” and “n” are the number of elements present in first and second lists respectively.
+Space Complexity
+
+ O(m+n) where “m” and “n” are the number of elements present in first and second lists respectively.
+
